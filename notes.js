@@ -21,6 +21,23 @@ const addNote = (title, body) => {
   }
 };
 
+const removeNote = (title) => {
+  const notes = loadNotes();
+
+  if (notes.length !== 0) {
+    const newNotes = notes.filter((note) => note.title !== title);
+
+    if (newNotes.length === notes.length) {
+      console.log("No note with that title was found.");
+    } else {
+      saveNotes(newNotes);
+      console.log(`Note (${title}) was removed.`);
+    }
+  } else {
+    console.log("There are no notes to remove.");
+  }
+};
+
 const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
@@ -36,4 +53,4 @@ const loadNotes = () => {
   }
 };
 
-module.exports = { getNotes, addNote, saveNotes };
+module.exports = { getNotes, addNote, saveNotes, removeNote };
