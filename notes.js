@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const fs = require("fs");
 
 const getNotes = () => {
@@ -15,26 +16,27 @@ const addNote = (title, body) => {
     });
 
     saveNotes(notes);
-    console.log("New note added!");
+    console.log(chalk.green.inverse("New note added!"));
   } else {
-    console.log("Cannot add note with duplicate title.");
+    console.log(chalk.red.inverse("Cannot add note with duplicate title."));
   }
 };
 
 const removeNote = (title) => {
   const notes = loadNotes();
+  const notesCount = notes.length;
 
-  if (notes.length !== 0) {
-    const newNotes = notes.filter((note) => note.title !== title);
+  if (notesCount > 0) {
+    const filteredNotes = notes.filter((note) => note.title !== title);
 
-    if (newNotes.length === notes.length) {
-      console.log("No note with that title was found.");
+    if (filteredNotes.length === notesCount) {
+      console.log(chalk.red.inverse("No note with that title was found."));
     } else {
-      saveNotes(newNotes);
-      console.log(`Note (${title}) was removed.`);
+      saveNotes(filteredNotes);
+      console.log(chalk.green.inverse(`Note (${title}) was removed.`));
     }
   } else {
-    console.log("There are no notes to remove.");
+    console.log(chalk.yellow.inverse("There are no notes to remove."));
   }
 };
 
