@@ -61,7 +61,7 @@ const readNote = (title) => {
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);
   } else {
-    console.log(chalk.red.inverse(`No note with ${title} was found.`));
+    console.log(chalk.red.inverse(`No note with title "${title}" was found.`));
   }
 };
 
