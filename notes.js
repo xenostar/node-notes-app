@@ -58,7 +58,7 @@ const readNote = (title) => {
 
   if (note) {
     console.log(chalk.green.inverse("Note found:"));
-    console.log(`Title: ${note.title}`);
+    console.log(chalk.bold(`Title: ${note.title}`));
     console.log(`Body: ${note.body}`);
   } else {
     console.log(chalk.red.inverse(`No note with title "${title}" was found.`));
